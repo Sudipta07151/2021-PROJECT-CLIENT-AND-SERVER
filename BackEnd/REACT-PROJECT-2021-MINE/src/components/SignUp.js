@@ -107,6 +107,7 @@ const SignUp = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
+              href={'/auth/google'}
             >
               Sign In With Google
             </Button>

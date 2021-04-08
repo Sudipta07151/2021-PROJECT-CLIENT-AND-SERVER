@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BlogsMain = (props) => {
     const { window } = props;
+    const location = useLocation();
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
