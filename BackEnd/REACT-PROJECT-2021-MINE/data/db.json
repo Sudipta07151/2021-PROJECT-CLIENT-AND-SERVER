@@ -22,7 +22,7 @@
       "category": "todos",
       "likes": 81,
       "id": 3,
-      "favourite": false
+      "favourite": true
     },
     {
       "title": "Complete my ninja training",

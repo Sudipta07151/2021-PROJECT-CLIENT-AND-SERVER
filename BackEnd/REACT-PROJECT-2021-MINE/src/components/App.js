@@ -22,25 +22,25 @@ const App = () => {
                 <Route exact path='/'>
                     <LibraryMain />
                 </Route>
-                <Route exact path='/MCQ'>
+                <Route path='/MCQ'>
                     <MCQ />
                 </Route>
-                <Route exact path='/MCQ/:routes'>
+                {/* <Route exact path='/MCQ/:routes'>
                     <MCQ />
-                </Route>
-                <Route exact path="/BlogsMain">
+                </Route> */}
+                <Route path="/BlogsMain">
                     <BlogsMain />
                 </Route>
-                <Route exact path='/BlogsMain/:routes'>
+                {/* <Route exact path='/BlogsMain/:routes'>
                     <BlogsMain />
-                </Route>
-                <Route exact path='/LibraryMain/:routes'>
+                </Route> */}
+                {/* <Route exact path='/LibraryMain/:routes'>
+                    <LibraryMain />
+                </Route> */}
+                <Route path='/LibraryMain'>
                     <LibraryMain />
                 </Route>
-                <Route exact path='/LibraryMain'>
-                    <LibraryMain />
-                </Route>
-                <Route exact path='/SignUp'>
+                <Route path='/SignUp'>
                     <SignUp />
                 </Route>
             </Switch>

@@ -21,7 +21,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CreateMCQ from './createMCQ';
 import ViewAllMcq from './ViewAllMcq'
 
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -62,23 +62,24 @@ const MCQ = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [url, setUrl] = React.useState('/MCQ');
+    //const [url, setUrl] = React.useState('/MCQ');
     const history = useHistory();
     const location = useLocation();
+    const { path, url } = useRouteMatch();
     const handleDrawerToggle = (link) => {
-        setUrl(url);
-        history.push('/MCQ');
-        if (link == 'MCQ/create') {
-            history.push('MCQ/create');
-            setUrl('MCQ/create');
-        }
-        else if (link == 'MCQ/view') {
-            history.push('MCQ/view');
-            setUrl('MCQ/view');
-        }
-        else {
-            history.push(url);
-        }
+        // setUrl(url);
+        // history.push('/MCQ');
+        // if (link == 'MCQ/create') {
+        //     history.push('MCQ/create');
+        //     setUrl('MCQ/create');
+        // }
+        // else if (link == 'MCQ/view') {
+        //     history.push('MCQ/view');
+        //     setUrl('MCQ/view');
+        // }
+        // else {
+        //     history.push(url);
+        // }
         setMobileOpen(!mobileOpen);
     };
 
@@ -87,16 +88,19 @@ const MCQ = (props) => {
             key: 1,
             item: 'View All Created',
             icon: <ViewComfyRoundedIcon />,
-            link: `MCQ/view`
+            // link: `MCQ/view`
+            link: `view`
+
         },
         {
             key: 2,
             item: 'Create New',
             icon: <AddCircleOutlineIcon />,
-            link: `MCQ/create`
+            //link: `MCQ/create`
+            link: `create`
         }
     ]
-
+    console.log(path, url);
     const drawer = (
         <div>
             <div className={classes.toolbar} />
@@ -106,8 +110,8 @@ const MCQ = (props) => {
                     <ListItem
                         button
                         key={key}
-                        // component={Link}
-                        // to={link}
+                        component={Link}
+                        to={`${url}/${link}`}
                         onClick={() => { handleDrawerToggle(link) }}
                     >
                         <ListItemIcon >{icon}</ListItemIcon>
@@ -174,8 +178,16 @@ const MCQ = (props) => {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    {url == 'MCQ/create' ? <CreateMCQ /> : null}
-                    {url == 'MCQ/view' ? <ViewAllMcq /> : null}
+                    {/* {url == 'MCQ/create' ? <CreateMCQ /> : null}
+                    {url == 'MCQ/view' ? <ViewAllMcq /> : null} */}
+                    <Switch>
+                        <Route path={`${path}/create`}>
+                            <CreateMCQ />
+                        </Route>
+                        <Route path={`${path}/view`}>
+                            <ViewAllMcq />
+                        </Route>
+                    </Switch>
                 </main>
             </div>
         </Router>

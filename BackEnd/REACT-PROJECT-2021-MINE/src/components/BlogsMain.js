@@ -25,7 +25,7 @@ import FavouritePosts from './FavouritePosts'
 import FaceIcon from '@material-ui/icons/Face'
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import StarsIcon from '@material-ui/icons/Stars';
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useParams, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, useLocation, useParams, useHistory, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -74,30 +74,31 @@ const BlogsMain = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [url, setUrl] = React.useState('/BlogsMain');
+    //const [url, setUrl] = React.useState('/BlogsMain');
     const history = useHistory();
+    const { path, url } = useRouteMatch();
     const handleDrawerToggle = (link) => {
-        setUrl(url);
-        history.push('/BlogsMain');
-        if (link == 'BlogsMain/all') {
-            history.push('BlogsMain/all');
-            setUrl('BlogsMain/all');
-        }
-        else if (link == 'BlogsMain/view') {
-            history.push('BlogsMain/view');
-            setUrl('BlogsMain/view');
-        }
-        else if (link == 'BlogsMain/blogs') {
-            history.push('BlogsMain/blogs');
-            setUrl('BlogsMain/blogs');
-        }
-        else if (link == 'BlogsMain/favourites') {
-            history.push('BlogsMain/favourites');
-            setUrl('BlogsMain/favourites');
-        }
-        else {
-            history.push(url);
-        }
+        // setUrl(url);
+        // history.push('/BlogsMain');
+        // if (link == 'BlogsMain/all') {
+        //     history.push('BlogsMain/all');
+        //     setUrl('BlogsMain/all');
+        // }
+        // else if (link == 'BlogsMain/view') {
+        //     history.push('BlogsMain/view');
+        //     setUrl('BlogsMain/view');
+        // }
+        // else if (link == 'BlogsMain/blogs') {
+        //     history.push('BlogsMain/blogs');
+        //     setUrl('BlogsMain/blogs');
+        // }
+        // else if (link == 'BlogsMain/favourites') {
+        //     history.push('BlogsMain/favourites');
+        //     setUrl('BlogsMain/favourites');
+        // }
+        // else {
+        //     history.push(url);
+        // }
         setMobileOpen(!mobileOpen);
     };
     const menuItems = [
@@ -105,25 +106,29 @@ const BlogsMain = (props) => {
             key: 1,
             item: 'All Blogs',
             icon: <SupervisedUserCircleIcon />,
-            link: `BlogsMain/all`
+            //link: `BlogsMain/all`
+            link: `all`
         },
         {
             key: 2,
             item: 'View All Created',
             icon: <FaceIcon />,
-            link: `BlogsMain/view`
+            //link: `BlogsMain/view`
+            link: `view`
         },
         {
             key: 3,
             item: 'Create New',
             icon: <AddCircleOutlineIcon />,
-            link: `BlogsMain/blogs`
+            //link: `BlogsMain/blogs`
+            link: `blogs`
         },
         {
             key: 4,
             item: 'Your Favourite',
             icon: <StarsIcon />,
-            link: `BlogsMain/favourites`
+            //link: `BlogsMain/favourites`
+            link: `favourites`
         },
     ]
 
@@ -136,8 +141,8 @@ const BlogsMain = (props) => {
                     <ListItem
                         button
                         key={key}
-                        // component={Link}
-                        // to={link}
+                        component={Link}
+                        to={`${url}/${link}`}
                         onClick={() => { handleDrawerToggle(link) }}
                     >
                         <ListItemIcon >{icon}</ListItemIcon>
@@ -195,11 +200,25 @@ const BlogsMain = (props) => {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    {url == '/BlogsMain' ? <AllBlogPosts /> : null}
+                    {/* {url == '/BlogsMain' ? <AllBlogPosts /> : null}
                     {url == 'BlogsMain/blogs' ? <Blogs /> : null}
                     {url == 'BlogsMain/view' ? <ViewAllBlogs /> : null}
                     {url == 'BlogsMain/all' ? <AllBlogPosts /> : null}
-                    {url == 'BlogsMain/favourites' ? <FavouritePosts /> : null}
+                    {url == 'BlogsMain/favourites' ? <FavouritePosts /> : null} */}
+                    <Switch>
+                        <Route path={`${path}/blogs`}>
+                            <Blogs />
+                        </Route>
+                        <Route path={`${path}/view`}>
+                            <ViewAllBlogs />
+                        </Route>
+                        <Route path={`${path}/all`}>
+                            <AllBlogPosts />
+                        </Route>
+                        <Route path={`${path}/favourites`}>
+                            <FavouritePosts />
+                        </Route>
+                    </Switch>
                 </main>
             </div>
         </Router >

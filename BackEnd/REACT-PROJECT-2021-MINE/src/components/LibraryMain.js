@@ -21,7 +21,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import InsertNew from './InsertNew';
 import ViewAllBooks from './ViewAllBooks';
 
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
 import ViewAllBlogs from './ViewAllBlogs';
 const drawerWidth = 240;
 
@@ -63,23 +63,24 @@ const LibraryMain = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [url, setUrl] = React.useState('/LibraryMain');
+    //const [url, setUrl] = React.useState('/LibraryMain');
     const history = useHistory();
     const location = useLocation();
+    const { path, url } = useRouteMatch();
     const handleDrawerToggle = (link) => {
-        setUrl(url);
-        history.push('/LibraryMain');
-        if (link == 'LibraryMain/insert') {
-            history.push('LibraryMain/insert');
-            setUrl('LibraryMain/insert');
-        }
-        else if (link == 'LibraryMain/view') {
-            history.push('LibraryMain/view');
-            setUrl('LibraryMain/view');
-        }
-        else {
-            history.push(url);
-        }
+        // setUrl(url);
+        // history.push('/LibraryMain');
+        // if (link == 'LibraryMain/insert') {
+        //     history.push('LibraryMain/insert');
+        //     setUrl('LibraryMain/insert');
+        // }
+        // else if (link == 'LibraryMain/view') {
+        //     history.push('LibraryMain/view');
+        //     setUrl('LibraryMain/view');
+        // }
+        // else {
+        //     history.push(url);
+        // }
         setMobileOpen(!mobileOpen);
     };
 
@@ -88,13 +89,15 @@ const LibraryMain = (props) => {
             key: 1,
             item: 'View All Created',
             icon: <ViewComfyRoundedIcon />,
-            link: `LibraryMain/view`
+            //link: `LibraryMain/view`
+            link: `view`
         },
         {
             key: 2,
             item: 'Insert New',
             icon: <AddCircleOutlineIcon />,
-            link: `LibraryMain/insert`
+            //link: `LibraryMain/insert`
+            link: `insert`
         }
     ]
 
@@ -107,8 +110,8 @@ const LibraryMain = (props) => {
                     <ListItem
                         button
                         key={key}
-                        // component={Link}
-                        // to={link}
+                        component={Link}
+                        to={`${url}/${link}`}
                         onClick={() => { handleDrawerToggle(link) }}
                     >
                         <ListItemIcon >{icon}</ListItemIcon>
@@ -175,8 +178,16 @@ const LibraryMain = (props) => {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    {url == 'LibraryMain/insert' ? <InsertNew /> : null}
-                    {url == 'LibraryMain/view' ? <ViewAllBooks /> : null}
+                    {/* {url == 'LibraryMain/insert' ? <InsertNew /> : null}
+                    {url == 'LibraryMain/view' ? <ViewAllBooks /> : null} */}
+                    <Switch>
+                        <Route path={`${path}/insert`}>
+                            <InsertNew />
+                        </Route>
+                        <Route path={`${path}/view`}>
+                            <ViewAllBooks />
+                        </Route>
+                    </Switch>
                 </main>
             </div>
         </Router>
