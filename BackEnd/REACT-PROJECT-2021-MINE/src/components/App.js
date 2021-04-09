@@ -4,6 +4,7 @@ import BlogsMain from './BlogsMain';
 import LibraryMain from './LibraryMain';
 import Navbar from './Navbar';
 import SignUp from './SignUp';
+import NotFound from './404NotFound'
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
@@ -42,6 +43,9 @@ const App = () => {
                 </Route>
                 <Route path='/SignUp'>
                     <SignUp />
+                </Route>
+                <Route path='*'>
+                    <NotFound />
                 </Route>
             </Switch>
         </Router>
