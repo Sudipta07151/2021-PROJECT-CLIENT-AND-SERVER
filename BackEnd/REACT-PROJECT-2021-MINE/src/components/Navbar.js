@@ -17,6 +17,7 @@ import { pink, purple, yellow } from '@material-ui/core/colors'
 import Box from '@material-ui/core/Box';
 import { shadows } from '@material-ui/system';
 import { useLocation } from 'react-router-dom';
+import SignIn from './SignIn';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -40,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
         }, '&:focus': {
             color: '#ffff00',
         }
+    },
+    avatarBack: {
+        backgroundColor: '#f50057',
     },
 
 }));
@@ -115,7 +119,7 @@ const Navbar = () => {
                     <CssBaseline />
                     <Paper>
                         <Grid container>
-                            <Grid item xs={7} md={9} lg={9}>
+                            <Grid item xs={8} md={10} lg={10}>
                                 <Tabs
                                     value={value}
                                     onChange={handleChange}
@@ -128,8 +132,8 @@ const Navbar = () => {
                                     {returnTab}
                                 </Tabs>
                             </Grid>
-                            <Grid item xs={4} md={2} lg={2} container direction="row" justify="center" alignItems="center">
-                                <ButtonGroup variant="text"
+                            <Grid item xs={3} md={1} lg={1} container direction="row" justify="center" alignItems="center" style={{ backgroundColor: '#f50057' }}>
+                                {/* <ButtonGroup variant="text"
                                     color="primary"
                                     aria-label="text primary button group"
                                     fullWidth={true}
@@ -145,9 +149,10 @@ const Navbar = () => {
                                         to='/SignUp'
                                     >
                                         SignUp</Button>
-                                </ButtonGroup>
+                                </ButtonGroup> */}
+                                <SignIn />
                             </Grid>
-                            <Grid item xs={1} md={1} lg={1} container direction="row" justify="center" alignItems="center">
+                            <Grid item xs={1} md={1} lg={1} container direction="row" justify="center" alignItems="center" className={classes.avatarBack}>
                                 <div className={classes.avatar}>
                                     <Avatar
                                         alt="Remy Sharp"

@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import SignUp from './SignUp';
 import NotFound from './404NotFound'
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -21,7 +21,8 @@ const App = () => {
             <Navbar className={classes.navbar} />
             <Switch>
                 <Route exact path='/'>
-                    <LibraryMain />
+                    <Redirect to="/LibraryMain" />
+                    {/* <LibraryMain /> */}
                 </Route>
                 <Route path='/MCQ'>
                     <MCQ />
