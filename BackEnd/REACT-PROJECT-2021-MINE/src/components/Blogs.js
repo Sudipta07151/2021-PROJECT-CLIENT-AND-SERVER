@@ -8,7 +8,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 
 const useStyles = makeStyles({
     field1: {
-        marginTop: 40,
+        marginTop: 10,
         marginBottom: 20,
         display: 'block',
     },
@@ -74,7 +74,7 @@ const Blogs = () => {
                         required
                         className={classes.field2}
                         multiline
-                        rows={30}
+                        rows={20}
                         error={postError}
                     />
                     <Button
