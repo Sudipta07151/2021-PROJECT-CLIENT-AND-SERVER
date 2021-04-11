@@ -18,6 +18,7 @@ import Box from '@material-ui/core/Box';
 import { shadows } from '@material-ui/system';
 import { useLocation } from 'react-router-dom';
 import SignIn from './SignIn';
+import Logout from './Logout'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -151,6 +152,7 @@ const Navbar = () => {
                                         SignUp</Button>
                                 </ButtonGroup> */}
                                 <SignIn />
+                                {/* <Logout /> */}
                             </Grid>
                             <Grid item xs={1} md={1} lg={1} container direction="row" justify="center" alignItems="center" className={classes.avatarBack}>
                                 <div className={classes.avatar}>

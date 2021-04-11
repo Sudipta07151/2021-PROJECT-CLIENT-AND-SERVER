@@ -34,8 +34,31 @@ const useStyles = makeStyles((theme) => ({
             width: 'auto',
         },
     },
+    buttonStyleGO: {
+        fontSize: 12,
+        backgroundColor: '#ff9100',
+        color: '#fff',
+        borderRadius: '0',
+        border: '2px solid #FFF',
+        marginRight: '10px',
+        '&:hover': {
+            backgroundColor: '#f57c00'
+        }
+    },
+    buttonStyleCLEAR: {
+        fontSize: 12,
+        backgroundColor: '#4caf50',
+        color: '#fff',
+        borderRadius: '0',
+        border: '2px solid #FFF',
+        marginRight: '10px',
+        '&:hover': {
+            backgroundColor: '#43a047'
+        }
+    },
     appbar: {
-        marginBottom: '20px'
+        marginBottom: '20px',
+        backgroundColor: '#ff7043'
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -63,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchArea = ({ term, handleSearch, searchBook, clearSearch }) => {
     const classes = useStyles();
-    console.log("term : ",term)
+    console.log("term : ", term)
 
     // React.useEffect(()=>{
     //     console.log("term : ",term)
@@ -93,13 +116,13 @@ const SearchArea = ({ term, handleSearch, searchBook, clearSearch }) => {
                         </div>
                         <Button
                             variant="outlined"
-                            color="secondary"
+                            className={classes.buttonStyleGO}
                             onClick={searchBook}
                         >
                             GO</Button>
                         <Button
                             variant="outlined"
-                            color="secondary"
+                            className={classes.buttonStyleCLEAR}
                             onClick={clearSearch}
                         >
                             CLEAR</Button>

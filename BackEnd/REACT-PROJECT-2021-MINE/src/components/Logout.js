@@ -1,47 +1,47 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core'
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles({
     small: {
         fontSize: 12,
-        backgroundColor: '#ff8f00',
+        backgroundColor: '#f44336',
         color: '#fff',
+        marginRight: '10px',
         borderRadius: '0',
         border: '2px solid #FFF',
-        marginRight: '10px',
         '&:hover': {
-            backgroundColor: '#ef6c00'
+            backgroundColor: '#e53935'
         }
     },
     large: {
         fontSize: 15,
-        backgroundColor: '#ff8f00',
-        color: '#fff',
+        backgroundColor: '#f44336',
         borderRadius: '0',
         border: '2px solid #FFF',
+        color: '#fff',
         '&:hover': {
-            backgroundColor: '#ef6c00'
+            backgroundColor: '#e53935'
         }
     }
 });
 
-const SignIn = () => {
+const Logout = () => {
     const classes = useStyles();
     const matches = useMediaQuery('(max-width:600px)');
     return (
         <React.Fragment>
             <Button variant="contained"
                 className={matches ? classes.small : classes.large}
-                endIcon={<LockOpenIcon fontSize="small" />}
+                endIcon={<ExitToAppIcon fontSize="small" />}
                 href={'/auth/google'}
             >
-                SignIn
+                Logout
             </Button>
         </React.Fragment>
     )
 }
 
-export default SignIn;
+export default Logout;

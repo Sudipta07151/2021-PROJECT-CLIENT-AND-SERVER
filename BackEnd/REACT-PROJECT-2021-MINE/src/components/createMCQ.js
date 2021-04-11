@@ -79,11 +79,12 @@ const CreateMCQ = () => {
                         placeholder="How are you?"
                         helperText="INSERT YOUR QUESTION HERE"
                         fullWidth={true}
+                        variant="outlined"
+                        color="secondary"
                         margin="normal"
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        variant="filled"
                         required={true}
                     />
                 </div>

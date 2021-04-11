@@ -7,7 +7,7 @@ import noimage from './noImage.jpg';
 
 const useStyles = makeStyles((theme) => ({
     list: {
-        paddingLeft: '35px'
+        //paddingLeft: '35px'
     }
 }));
 

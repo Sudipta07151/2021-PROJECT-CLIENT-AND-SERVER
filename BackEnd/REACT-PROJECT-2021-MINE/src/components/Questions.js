@@ -36,6 +36,7 @@ const Questions = (props) => {
                         id="outlined-required"
                         label={`set option ${number + 1}`}
                         variant="outlined"
+                        color="secondary"
                         fullWidth={true}
                         className={classes.textField}
                     />
@@ -49,7 +50,7 @@ const Questions = (props) => {
             {num == 0 ? null : list}
             {num == 0 ? null : <Button
                 variant="contained"
-                color="primary"
+                color="secondary"
                 size="large"
                 className={classes.button}
                 startIcon={<SaveIcon />}
