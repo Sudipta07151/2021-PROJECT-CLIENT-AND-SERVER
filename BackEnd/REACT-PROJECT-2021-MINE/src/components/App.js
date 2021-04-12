@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MCQ from './MCQ';
 import BlogsMain from './BlogsMain';
 import LibraryMain from './LibraryMain';
@@ -6,7 +6,9 @@ import Navbar from './Navbar';
 import SignUp from './SignUp';
 import NotFound from './404NotFound'
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -14,8 +16,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const App = () => {
+const App = (props) => {
     const classes = useStyles();
+    useEffect(() => {
+        props.fetchUser();
+    });
     return (
         <Router>
             <Navbar className={classes.navbar} />
@@ -42,7 +47,7 @@ const App = () => {
                 <Route path='/LibraryMain'>
                     <LibraryMain />
                 </Route>
-                <Route path='/SignUp'>
+                <Route path='/SignIn'>
                     <SignUp />
                 </Route>
                 <Route path='*'>
@@ -53,4 +58,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default connect(null, actions)(App);

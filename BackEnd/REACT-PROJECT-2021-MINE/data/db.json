@@ -14,7 +14,7 @@
       "category": "money",
       "likes": 49,
       "id": 2,
-      "favourite": false
+      "favourite": true
     },
     {
       "title": "Order a pizza!",
@@ -38,7 +38,7 @@
       "category": "todos",
       "likes": 234,
       "id": 5,
-      "favourite": false
+      "favourite": true
     },
     {
       "title": "Yoshi's birthday bash",

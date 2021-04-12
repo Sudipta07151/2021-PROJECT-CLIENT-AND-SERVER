@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core'
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles({
     small: {
@@ -29,6 +30,10 @@ const useStyles = makeStyles({
 });
 
 const SignIn = () => {
+    const history = useHistory();
+    const handleToSignUp = () => {
+        history.push('/SignIn');
+    }
     const classes = useStyles();
     const matches = useMediaQuery('(max-width:600px)');
     return (
@@ -36,7 +41,8 @@ const SignIn = () => {
             <Button variant="contained"
                 className={matches ? classes.small : classes.large}
                 endIcon={<LockOpenIcon fontSize="small" />}
-                href={'/auth/google'}
+                onClick={handleToSignUp}
+            // href={'/auth/google'}
             >
                 SignIn
             </Button>

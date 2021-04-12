@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import SearchArea from '../components/reusable/SearchArea';
 import BookList from '../components/lists/BookList';
-import Paper from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
 import axios from 'axios';
 
 

@@ -1,22 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Blogs from './Blogs';
 import ViewAllBlogs from './ViewAllBlogs'
@@ -25,7 +21,7 @@ import FavouritePosts from './FavouritePosts'
 import FaceIcon from '@material-ui/icons/Face'
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import StarsIcon from '@material-ui/icons/Stars';
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useParams, useHistory, useRouteMatch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -70,12 +66,12 @@ const useStyles = makeStyles((theme) => ({
 
 const BlogsMain = (props) => {
     const { window } = props;
-    const location = useLocation();
+    //const location = useLocation();
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
     //const [url, setUrl] = React.useState('/BlogsMain');
-    const history = useHistory();
+    //const history = useHistory();
     const { path, url } = useRouteMatch();
     const handleDrawerToggle = (link) => {
         // setUrl(url);

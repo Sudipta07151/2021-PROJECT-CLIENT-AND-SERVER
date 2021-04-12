@@ -21,7 +21,7 @@ const NotFound = () => {
     return (
         <React.Fragment>
             <Paper variant="outlined" className={classes.outer}>
-                <img src={notFound} className={classes.image} />
+                <img src={notFound} className={classes.image} alt="book" />
             </Paper>
         </React.Fragment>
     );

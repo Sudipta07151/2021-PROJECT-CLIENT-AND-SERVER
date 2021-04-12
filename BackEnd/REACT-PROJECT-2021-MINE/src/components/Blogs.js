@@ -35,13 +35,11 @@ const Blogs = () => {
         e.preventDefault();
         setPostError(false);
         setTitleError(false);
-        if (postTitle == '')
+        if (postTitle === '')
             setTitleError(true)
-        if (postBody == '')
+        if (postBody === '')
             setPostError(true)
         if (postTitle && postBody) {
-            console.log(postTitle);
-            console.log(postBody);
             setPostTitle('');
             setPostBody('');
         }

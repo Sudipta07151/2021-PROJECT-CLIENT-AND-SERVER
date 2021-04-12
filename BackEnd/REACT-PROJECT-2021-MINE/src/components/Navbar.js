@@ -7,15 +7,12 @@ import LibraryBooksRoundedIcon from '@material-ui/icons/LibraryBooksRounded';
 import NoteAddRoundedIcon from '@material-ui/icons/NoteAddRounded';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Link } from 'react-router-dom'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { pink, purple, yellow } from '@material-ui/core/colors'
+import { yellow } from '@material-ui/core/colors'
 import Box from '@material-ui/core/Box';
-import { shadows } from '@material-ui/system';
 import { useLocation } from 'react-router-dom';
 import SignIn from './SignIn';
 import Logout from './Logout'
@@ -65,13 +62,13 @@ const Navbar = () => {
     const location = useLocation();
     React.useEffect(() => {
         if (url != location.pathname) {
-            if (location.pathname == '/Library') {
+            if (location.pathname == '/Library' || /^\/Library\//.test(location.pathname)) {
                 setValue(0);
             }
-            if (location.pathname == '/BlogsMain') {
+            if (location.pathname == '/BlogsMain/all' || /^\/BlogsMain\//.test(location.pathname)) {
                 setValue(1);
             }
-            if (location.pathname == '/MCQ') {
+            if (location.pathname == '/MCQ' || /^\/MCQ\//.test(location.pathname)) {
                 setValue(2);
             }
             setUrl(location.pathname);

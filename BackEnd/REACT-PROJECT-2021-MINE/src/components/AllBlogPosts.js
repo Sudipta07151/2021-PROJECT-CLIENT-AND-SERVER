@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import PostCard from '../components/reusable/PostCard'
 import Masonry from 'react-masonry-css';
 const AllBlogPosts = () => {
@@ -19,7 +17,7 @@ const AllBlogPosts = () => {
         await fetch(`http://localhost:8000/notes/${id}`, {
             method: 'DELETE'
         });
-        const newData = note.filter(note => note.id != id);
+        const newData = note.filter(note => note.id !== id);
         setNotes(newData);
     }
 
