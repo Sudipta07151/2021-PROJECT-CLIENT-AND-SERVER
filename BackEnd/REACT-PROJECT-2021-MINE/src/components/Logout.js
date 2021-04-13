@@ -36,7 +36,7 @@ const Logout = () => {
             <Button variant="contained"
                 className={matches ? classes.small : classes.large}
                 endIcon={<ExitToAppIcon fontSize="small" />}
-                href={'/auth/google'}
+                href={'/api/logout'}
             >
                 Logout
             </Button>

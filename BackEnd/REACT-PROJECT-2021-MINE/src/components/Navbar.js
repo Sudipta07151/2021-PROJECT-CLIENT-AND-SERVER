@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -15,7 +16,8 @@ import { yellow } from '@material-ui/core/colors'
 import Box from '@material-ui/core/Box';
 import { useLocation } from 'react-router-dom';
 import SignIn from './SignIn';
-import Logout from './Logout'
+import Logout from './Logout';
+import noImage from '../assets/images.png';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -55,7 +57,7 @@ const theme = createMuiTheme({
     }
 })
 
-const Navbar = () => {
+const Navbar = (props) => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
     const [url, setUrl] = React.useState('');
@@ -110,6 +112,7 @@ const Navbar = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    console.log(props);
     return (
         <div>
             <Box boxShadow={1}>
@@ -148,14 +151,16 @@ const Navbar = () => {
                                     >
                                         SignUp</Button>
                                 </ButtonGroup> */}
-                                <SignIn />
+                                {props.auth == false ? <SignIn /> : <Logout />}
+                                {/* <SignIn /> */}
                                 {/* <Logout /> */}
                             </Grid>
                             <Grid item xs={1} md={1} lg={1} container direction="row" justify="center" alignItems="center" className={classes.avatarBack}>
                                 <div className={classes.avatar}>
                                     <Avatar
                                         alt="Remy Sharp"
-                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                                        //src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                                        src={props.auth != false && props.auth != null ? props.auth.pictureURL : noImage}
                                         className={matches ? classes.small : classes.large}
                                         onClick={(e) => {
                                             console.log(e);
@@ -171,4 +176,7 @@ const Navbar = () => {
         </div >
     );
 }
-export default Navbar;
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+export default connect(mapStateToProps)(Navbar);
