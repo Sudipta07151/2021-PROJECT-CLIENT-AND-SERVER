@@ -41,6 +41,7 @@ passport.use(
                         googleID: profile.id,
                         pictureURL: profile.photos[0].value,
                         name: profile.name.givenName,
+                        email: profile.emails[0].value
                     }).save()
                 done(null, user);
             }

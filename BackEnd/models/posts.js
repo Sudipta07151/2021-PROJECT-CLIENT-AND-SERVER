@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const feedbackUserSchema = require('./feedbackUser');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const postsSchema = new Schema({
     title: {
@@ -13,11 +14,19 @@ const postsSchema = new Schema({
     },
     date: {
         type: Date,
-        required: true
+        default: Date
     },
-    tags: [{ type: String }],
-    _author: { type: Schema.Types.ObjectId, ref: 'author' }
+    tags: {
+        education: { type: Boolean, default: false },
+        art: { type: Boolean, default: false },
+        techninal: { type: Boolean, default: false },
+        other: { type: Boolean, default: false }
+    },
+    likes: { type: Number, default: 0 },
+    dislikes: { type: Number, default: 0 },
+    feedbackUser: [feedbackUserSchema],
+    _author: { type: Schema.Types.ObjectId, ref: 'Users' }
 })
 
 
-module.exports = mongoose.model('Posts', postsSchema);
+module.exports = mongoose.model('posts', postsSchema);

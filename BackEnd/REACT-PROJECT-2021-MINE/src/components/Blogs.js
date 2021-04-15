@@ -8,7 +8,6 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 
@@ -54,16 +53,17 @@ const Blogs = () => {
         }
     }
     const [state, setState] = React.useState({
-        gilad: false,
-        jason: false,
-        antoine: false,
+        art: false,
+        education: false,
+        technical: false,
+        other: false
     });
 
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
 
-    const { gilad, jason, antoine } = state;
+    const { art, education, technical, other } = state;
 
 
     return (
@@ -102,20 +102,26 @@ const Blogs = () => {
                             <Grid container>
                                 <Grid itms xs={12} md={2}>
                                     <FormControlLabel
-                                        control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
+                                        control={<Checkbox checked={art} onChange={handleChange} name="art" />}
                                         label="art"
                                     />
                                 </Grid>
                                 <Grid itms xs={12} md={2}>
                                     <FormControlLabel
-                                        control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
+                                        control={<Checkbox checked={education} onChange={handleChange} name="education" />}
                                         label="education"
                                     />
                                 </Grid>
                                 <Grid itms xs={12} md={2}>
                                     <FormControlLabel
-                                        control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
+                                        control={<Checkbox checked={technical} onChange={handleChange} name="technical" />}
                                         label="technical"
+                                    />
+                                </Grid>
+                                <Grid itms xs={12} md={2}>
+                                    <FormControlLabel
+                                        control={<Checkbox checked={other} onChange={handleChange} name="other" />}
+                                        label="other"
                                     />
                                 </Grid>
                             </Grid>
