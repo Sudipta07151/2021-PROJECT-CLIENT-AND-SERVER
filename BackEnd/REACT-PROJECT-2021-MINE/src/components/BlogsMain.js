@@ -21,7 +21,7 @@ import FavouritePosts from './FavouritePosts'
 import FaceIcon from '@material-ui/icons/Face'
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import StarsIcon from '@material-ui/icons/Stars';
-import { BrowserRouter as Router, Route, Switch, Link, useRouteMatch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -201,6 +201,7 @@ const BlogsMain = (props) => {
                     {url == 'BlogsMain/view' ? <ViewAllBlogs /> : null}
                     {url == 'BlogsMain/all' ? <AllBlogPosts /> : null}
                     {url == 'BlogsMain/favourites' ? <FavouritePosts /> : null} */}
+                    <Redirect from={`${path}`} to={`${path}/all`} />
                     <Switch>
                         <Route path={`${path}/blogs`}>
                             <Blogs />

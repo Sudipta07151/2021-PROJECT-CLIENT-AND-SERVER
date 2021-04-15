@@ -4,7 +4,13 @@ import { makeStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
-
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
     field1: {
@@ -16,6 +22,9 @@ const useStyles = makeStyles({
         marginTop: 20,
         marginBottom: 20,
         display: 'block',
+    },
+    formControl: {
+        display: 'flex',
     }
 })
 
@@ -44,6 +53,18 @@ const Blogs = () => {
             setPostBody('');
         }
     }
+    const [state, setState] = React.useState({
+        gilad: false,
+        jason: false,
+        antoine: false,
+    });
+
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
+
+    const { gilad, jason, antoine } = state;
+
 
     return (
         <div>
@@ -75,6 +96,31 @@ const Blogs = () => {
                         rows={20}
                         error={postError}
                     />
+                    <FormControl component="fieldset" className={classes.formControl}>
+                        <FormLabel component="legend">SELECT TAGS</FormLabel>
+                        <FormGroup className={classes.formGroup}>
+                            <Grid container>
+                                <Grid itms xs={12} md={2}>
+                                    <FormControlLabel
+                                        control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
+                                        label="art"
+                                    />
+                                </Grid>
+                                <Grid itms xs={12} md={2}>
+                                    <FormControlLabel
+                                        control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
+                                        label="education"
+                                    />
+                                </Grid>
+                                <Grid itms xs={12} md={2}>
+                                    <FormControlLabel
+                                        control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
+                                        label="technical"
+                                    />
+                                </Grid>
+                            </Grid>
+                        </FormGroup>
+                    </FormControl>
                     <Button
                         type="submit"
                         color="secondary"
@@ -83,6 +129,7 @@ const Blogs = () => {
                     >
                         Submit Post
                     </Button>
+
                 </form>
             </Container>
         </div >

@@ -18,7 +18,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import InsertNew from './InsertNew';
 import ViewAllBooks from './ViewAllBooks';
 
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, Redirect, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -176,6 +176,7 @@ const LibraryMain = (props) => {
                     <div className={classes.toolbar} />
                     {/* {url == 'LibraryMain/insert' ? <InsertNew /> : null}
                     {url == 'LibraryMain/view' ? <ViewAllBooks /> : null} */}
+                    <Redirect from={`${path}`} to={`${path}/insert`} />
                     <Switch>
                         <Route path={`${path}/insert`}>
                             <InsertNew />

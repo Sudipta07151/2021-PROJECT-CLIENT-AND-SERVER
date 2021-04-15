@@ -22,6 +22,10 @@ module.exports = (app) => {
             res.redirect('/');
         }
     );
+
+    app.post('/user/products', (req, res) => {
+        res.status(300).send('POSTED');
+    })
 }
 
 

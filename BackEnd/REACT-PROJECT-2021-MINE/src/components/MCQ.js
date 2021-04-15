@@ -19,7 +19,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CreateMCQ from './createMCQ';
 import ViewAllMcq from './ViewAllMcq'
 
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, Redirect, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -177,6 +177,7 @@ const MCQ = (props) => {
                     <div className={classes.toolbar} />
                     {/* {url == 'MCQ/create' ? <CreateMCQ /> : null}
                     {url == 'MCQ/view' ? <ViewAllMcq /> : null} */}
+                    <Redirect from={`${path}`} to={`${path}/view`} />
                     <Switch>
                         <Route path={`${path}/create`}>
                             <CreateMCQ />
