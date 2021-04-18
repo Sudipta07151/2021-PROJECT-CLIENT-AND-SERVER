@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 //const requireLogin = require('../middlewares/requireLogin');
 const manualUsersAuth = mongoose.model('manualUsers');
 const { check, validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
 const gravatar = require('gravatar');
 const bcrypt = require('bcrypt');
-
+const { jwtKey } = require('../config/dev');
 
 const manualUsers = mongoose.model('manualUsers')
 module.exports = app => {
@@ -28,7 +29,7 @@ module.exports = app => {
                 }
                 //get user gravatar
                 const avatar = gravatar.url(email, {
-                    s: '100',
+                    s: '200',
                     r: 'pg',
                     d: 'mm'
                 })
@@ -43,8 +44,22 @@ module.exports = app => {
                 const salt = await bcrypt.genSalt(saltRounds);
                 user.password = await bcrypt.hash(password, salt);
                 await user.save();
-                res.send('USER REGISTERED');
+                // res.send('USER REGISTERED');
                 //return jsonwebtoken
+                const payload = {
+                    user: {
+                        id: user.id
+                    }
+                }
+                jwt.sign(
+                    payload,
+                    jwtKey,
+                    { expiresIn: 360000 },
+                    (err, token) => {
+                        if (err) throw err;
+                        res.json({ token });
+                    }
+                );
             }
             catch (err) {
                 console.log(err.message);
@@ -54,35 +69,7 @@ module.exports = app => {
             // const { email, password, name } = req.body;
             // 
             console.log(req.body);
-            res.send('USER ROUTE');
         })
 };
 
 
-//SCHEMA COMMENTED DOWN AS A REFERENCE(DELETE AFTER CREATION)
-
-// {
-//     email: {
-//         type: String,
-//         required: true,
-//         unique: true,
-//         trim: true
-//     },
-//     password: {
-//         type: String,
-//         required: true,
-//     },
-//     name: {
-//         type: String,
-//         required: true
-//     },
-//     pictureURL: {
-//         type: String,
-//         default: ''
-//     },
-//     date: {
-//         type: Date,
-//         default: Date.now
-//     }
-// }
-// )

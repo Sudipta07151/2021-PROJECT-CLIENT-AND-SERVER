@@ -9,7 +9,9 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import google from '../assets/google.png'
+import google from '../assets/google.png';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 function Copyright() {
   return (
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -65,8 +68,7 @@ const SignUp = () => {
         <div className={classes.paper}>
           <Avatar
             className={classes.avatar}
-            src={google}
-          />
+          ><LockOpenIcon /></Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -104,8 +106,23 @@ const SignUp = () => {
               color="primary"
               className={classes.submit}
               href={'/auth/google'}
+              startIcon={<Avatar
+                className={classes.avatar}
+                src={google}
+              />}
             >
               Sign In With Google
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              href={'/loginForm'}
+              startIcon={<VpnKeyIcon />}
+            >
+              SignIn With EMAIl and Password
             </Button>
             <Grid container>
               <Grid item xs>
@@ -114,7 +131,7 @@ const SignUp = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signUpNew" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -125,7 +142,7 @@ const SignUp = () => {
           </form>
         </div>
       </Grid>
-    </Grid>
+    </Grid >
   );
 }
 

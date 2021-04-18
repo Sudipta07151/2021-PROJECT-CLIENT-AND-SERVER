@@ -4,7 +4,9 @@ import BlogsMain from './BlogsMain';
 import LibraryMain from './LibraryMain';
 import Navbar from './Navbar';
 import SignUp from './SignUp';
-import NotFound from './404NotFound'
+import NotFound from './404NotFound';
+import ManualSignInForm from './ManualSignInForm';
+import ManualSignUpForm from './ManualSignUpForm';
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -49,6 +51,12 @@ const App = (props) => {
                 </Route>
                 <Route path='/SignIn'>
                     <SignUp />
+                </Route>
+                <Route path='/loginForm'>
+                    <ManualSignInForm />
+                </Route>
+                <Route path='/signUpNew'>
+                    <ManualSignUpForm />
                 </Route>
                 <Route path='*'>
                     <NotFound />

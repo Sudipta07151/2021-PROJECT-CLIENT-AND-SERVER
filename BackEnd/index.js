@@ -5,7 +5,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./models/user');
 require('./models/posts');
-require('./models/manualUser')
+require('./models/manualUser');
 require('./services/passport');
 const app = express();
 
@@ -22,7 +22,7 @@ app.use(express.json());
 require('./routes/manualAuthRoutes')(app);
 require('./routes/authRoutes')(app);
 require('./routes/postsRoutes')(app);
-
+require('./routes/getManualUserRoute')(app);
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
