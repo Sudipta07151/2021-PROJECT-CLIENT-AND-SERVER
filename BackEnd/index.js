@@ -5,6 +5,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./models/user');
 require('./models/posts');
+require('./models/manualUser')
 require('./services/passport');
 const app = express();
 
@@ -16,12 +17,14 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
 
+require('./routes/manualAuthRoutes')(app);
 require('./routes/authRoutes')(app);
 require('./routes/postsRoutes')(app);
 
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 
 
