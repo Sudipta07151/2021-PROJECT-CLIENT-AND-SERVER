@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar: {
         marginBottom: '20px',
-        backgroundColor: '#ff7043'
+        backgroundColor: '#424242'
     },
     searchIcon: {
         padding: theme.spacing(0, 2),

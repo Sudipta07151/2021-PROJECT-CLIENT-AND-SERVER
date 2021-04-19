@@ -129,7 +129,7 @@ const Blogs = () => {
                     </FormControl>
                     <Button
                         type="submit"
-                        color="secondary"
+                        color="primary"
                         variant="contained"
                         endIcon={<ArrowRightIcon />}
                     >

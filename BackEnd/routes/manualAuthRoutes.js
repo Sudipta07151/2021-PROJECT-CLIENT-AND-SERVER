@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 //const requireLogin = require('../middlewares/requireLogin');
-const manualUsersAuth = mongoose.model('manualUsers');
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
+const { jwtKey } = require('../config/dev');
 const gravatar = require('gravatar');
 const bcrypt = require('bcrypt');
-const { jwtKey } = require('../config/dev');
+const manualUsers = mongoose.model('manualUsers');
 
-const manualUsers = mongoose.model('manualUsers')
 module.exports = app => {
     app.post('/api/manualAuth',
         [

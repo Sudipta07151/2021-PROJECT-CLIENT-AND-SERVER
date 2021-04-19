@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#424242',
+    '&:hover': {
+      backgroundColor: '#212121'
+    }
   },
 }));
 
@@ -107,7 +111,7 @@ const SignUp = () => {
               className={classes.submit}
               href={'/auth/google'}
               startIcon={<Avatar
-                className={classes.avatar}
+                //lassName={classes.avatar}
                 src={google}
               />}
             >

@@ -31,19 +31,19 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(7),
     },
     navbar: {
-        backgroundColor: '#f50057',
+        backgroundColor: '#212121',
     },
     tabColor: {
-        color: '#fce4ec',
+        color: '#FFF',
         '&:hover': {
-            color: '#ffff00',
+            color: '#fbc02d',
             opacity: 1,
         }, '&:focus': {
-            color: '#ffff00',
+            color: '#fbc02d',
         }
     },
     avatarBack: {
-        backgroundColor: '#f50057',
+        backgroundColor: '#212121',
     },
 
 }));
@@ -51,9 +51,11 @@ const useStyles = makeStyles((theme) => ({
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#f50057'
+            main: '#6200ea'
         },
-        secondary: yellow
+        secondary: {
+            main: '#fbc02d'
+        }
     }
 })
 
@@ -133,7 +135,7 @@ const Navbar = (props) => {
                                     {returnTab}
                                 </Tabs>
                             </Grid>
-                            <Grid item xs={3} md={1} lg={1} container direction="row" justify="center" alignItems="center" style={{ backgroundColor: '#f50057' }}>
+                            <Grid item xs={3} md={1} lg={1} container direction="row" justify="center" alignItems="center" style={{ backgroundColor: '#212121' }}>
                                 {/* <ButtonGroup variant="text"
                                     color="primary"
                                     aria-label="text primary button group"

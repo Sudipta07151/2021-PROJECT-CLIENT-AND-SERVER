@@ -27,6 +27,14 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        '& .MuiTextField-root': {
+            marginTop: theme.spacing(4),
+        },
+        '& label.Mui-focused': {
+            color: '#424242',
+        },
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -43,8 +51,11 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(3, 0, 2),
+        backgroundColor: '#424242',
     },
 }));
+
 
 const ManualSignUpForm = () => {
     const classes = useStyles();
@@ -59,7 +70,7 @@ const ManualSignUpForm = () => {
                 <Typography component="h1" variant="h5">
                     Sign up
         </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate className={classes.root}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={12}>
                             <TextField
