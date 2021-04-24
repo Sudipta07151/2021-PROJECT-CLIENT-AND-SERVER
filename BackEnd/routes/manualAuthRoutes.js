@@ -32,7 +32,7 @@ module.exports = app => {
                     r: 'pg',
                     d: 'mm'
                 })
-                user = new manualUsersAuth({
+                user = new manualUsers({
                     email: email,
                     password: password,
                     name: name,

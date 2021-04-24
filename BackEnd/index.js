@@ -6,6 +6,7 @@ const passport = require('passport');
 require('./models/user');
 require('./models/posts');
 require('./models/manualUser');
+require('./models/profile');
 require('./services/passport');
 const app = express();
 
