@@ -24,6 +24,7 @@ require('./routes/manualAuthRoutes')(app);
 require('./routes/authRoutes')(app);
 require('./routes/postsRoutes')(app);
 require('./routes/getManualUserRoute')(app);
+require('./routes/profile')(app);
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
