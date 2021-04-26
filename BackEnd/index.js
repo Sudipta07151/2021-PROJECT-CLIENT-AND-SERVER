@@ -4,7 +4,7 @@ const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./models/user');
-require('./models/posts');
+require('./models/Post');
 require('./models/manualUser');
 require('./models/profile');
 require('./services/passport');
@@ -22,7 +22,7 @@ app.use(express.json());
 
 require('./routes/manualAuthRoutes')(app);
 require('./routes/authRoutes')(app);
-require('./routes/postsRoutes')(app);
+// require('./routes/postsRoutes')(app);
 require('./routes/getManualUserRoute')(app);
 require('./routes/profile')(app);
 
