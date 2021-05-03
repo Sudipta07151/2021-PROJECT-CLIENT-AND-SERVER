@@ -30,14 +30,55 @@ module.exports = app => {
         [
             check('status', 'Status is required').not().isEmpty(),
             check('skills', 'Skills is required').not().isEmpty(),
+            check('email', 'Valid email is required').isEmail(),
         ]
     ], async (req, res) => {
         const error = validationResult(req);
         if (!error.isEmpty()) {
-            return res.status(400).json({ errors: erros.array() });
+            return res.status(400).json({ errors: error.array() });
         }
-    })
+        const {
+            skills,
+            location,
+            email,
+            bio,
+            status
+        } = req.body;
+        //profile object
+        const profileFields = {};
+        profileFields.user = req.user.id;
+        if (location)
+            profileFields.location = location;
+        if (email)
+            profileFields.email = email;
+        if (bio)
+            profileFields.bio = bio;
+        if (status)
+            profileFields.status = status;
+        if (skills)
+            profileFields.skills = skills.split(',').map(skill => skill.trim());
 
+        try {
+            let profile = await userProfile.findOne({ user: req.user.id }).populate('user', ['name', 'pictureURL']);;
+            if (profile) {
+                profile = await userProfile.findOneAndUpdate(
+                    { user: req.user.id },
+                    { $set: profileFields },
+                    { new: true }
+                )
+                return res.json(profile);
+            }
+            profile = new userProfile(profileFields);
+            await profile.save();
+            return res.json(profile);
+        }
+        catch (err) {
+            console.log(err.message);
+            res.status(500).send('Server Error');
+        }
+        // console.log(profileFields.skills);
+        // res.status(200).json(profileFields);
+    })
 }
 
 // user: {

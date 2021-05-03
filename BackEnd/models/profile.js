@@ -12,14 +12,15 @@ const profileSchema = new Schema({
         required: true
     },
     status: {
-        type: [String],
+        type: String,
         required: true
     },
     location: {
-
+        type: String
     },
     email: {
-        type: String
+        type: String,
+        required: true
     },
     bio: {
         tye: String
