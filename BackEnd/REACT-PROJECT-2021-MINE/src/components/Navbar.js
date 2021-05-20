@@ -114,9 +114,11 @@ const Navbar = (props) => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    console.log(props);
+    // console.log(props);
     return (
-        <div>
+        <div
+        //style={{ position: 'fixed', top: '0', left: '0', width: '100vw' }}
+        >
             <Box boxShadow={1}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />

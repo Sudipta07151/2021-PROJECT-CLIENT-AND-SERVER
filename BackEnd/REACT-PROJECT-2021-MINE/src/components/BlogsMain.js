@@ -1,4 +1,7 @@
 import React from 'react';
+
+
+
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -14,13 +17,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import StarsIcon from '@material-ui/icons/Stars';
+import FaceIcon from '@material-ui/icons/Face'
+
 import Blogs from './Blogs';
 import ViewAllBlogs from './ViewAllBlogs'
 import AllBlogPosts from './AllBlogPosts'
 import FavouritePosts from './FavouritePosts'
-import FaceIcon from '@material-ui/icons/Face'
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import StarsIcon from '@material-ui/icons/Stars';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
@@ -65,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BlogsMain = (props) => {
+    // console.log(props)
     const { window } = props;
     //const location = useLocation();
     const classes = useStyles();
