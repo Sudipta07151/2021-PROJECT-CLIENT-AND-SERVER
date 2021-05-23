@@ -15,7 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import InsertNew from './InsertNew';
+// import InsertNew from './InsertNew';
+import ReduxBookList from './ReduxBookList';
 import ViewAllBooks from './ViewAllBooks';
 
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
@@ -179,7 +180,8 @@ const LibraryMain = (props) => {
                     <Redirect from={`${path}`} to={`${path}/insert`} />
                     <Switch>
                         <Route path={`${path}/insert`}>
-                            <InsertNew />
+                            {/* <InsertNew /> */}
+                            <ReduxBookList />
                         </Route>
                         <Route path={`${path}/view`}>
                             <ViewAllBooks />

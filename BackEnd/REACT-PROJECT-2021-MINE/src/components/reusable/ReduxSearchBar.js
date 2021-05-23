@@ -126,7 +126,7 @@ const ReduxSearchBar = (props) => {
                             className={classes.buttonStyleGO}
                             onClick={() => {
                                 props.searchTerm(placeholder)
-                                props.searchBook()
+                                props.searchFunc(placeholder)
                             }}
                         >
                             GO</Button>

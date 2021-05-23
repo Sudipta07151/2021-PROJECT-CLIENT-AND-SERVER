@@ -6,14 +6,10 @@ import { fetchBooksList } from '../actions';
 
 
 const ReduxBookList = (props) => {
-    const searchBook = () => {
-        console.log('called searchBook', props.term)
-        props.fetchBooks(props.term)
-    }
     return (
         <div>
-            <SearchArea searchBook={searchBook} />
-            {/* <BookList books={props.bookList} /> */}
+            <SearchArea searchFunc={props.fetchBooks} />
+            {props.bookList.length > 0 ? <BookList books={props.bookList} /> : null}
         </div>
     );
 }
@@ -21,7 +17,7 @@ const ReduxBookList = (props) => {
 const mapStateTotprops = (state) => {
     console.log(state)
     return {
-        boosList: state.bookList,
+        bookList: state.bookList,
         term: state.search
     }
 }

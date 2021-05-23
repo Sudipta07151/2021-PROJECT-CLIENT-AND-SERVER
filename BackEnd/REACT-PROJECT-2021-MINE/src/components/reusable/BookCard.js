@@ -12,6 +12,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import { connect } from 'react-redux';
+import { selectBook } from '../../actions'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '550px',
@@ -68,7 +71,9 @@ const BookCard = ({ image, title, author, isbn }) => {
                     {`ISBN: ${isbn}`}
                 </Typography>
             </CardContent>
-            <IconButton aria-label="add to favorites">
+            <IconButton aria-label="add to favorites"
+                onClick={() => selectBook(isbn)}
+            >
                 <FavoriteIcon />
             </IconButton>
             <IconButton aria-label="share">
@@ -78,4 +83,11 @@ const BookCard = ({ image, title, author, isbn }) => {
     );
 }
 
-export default BookCard;
+const mapStateToProps = (state) => {
+    console.log(state.selectedBook);
+    return {
+        selectedBook: state.selectedBook
+    }
+}
+
+export default connect(mapStateToProps, { selectBook })(BookCard);

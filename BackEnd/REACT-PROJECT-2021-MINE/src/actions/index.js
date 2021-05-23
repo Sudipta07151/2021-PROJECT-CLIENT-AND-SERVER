@@ -30,6 +30,14 @@ const fetchBooksList = (searchTerm) => {
 //     setBooks(booksData.data.items);
 // }
 
+const selectBook = (book) => {
+    console.log(book)
+    return {
+        type: 'SELECT_BOOK',
+        payload: book
+    }
+};
+
 
 
 const searchTerm = (term) => {
@@ -47,4 +55,6 @@ const clearSearchTerm = () => {
 }
 
 
-export { fetchBooksList, searchTerm, clearSearchTerm }
+
+
+export { fetchBooksList, selectBook, searchTerm, clearSearchTerm }
