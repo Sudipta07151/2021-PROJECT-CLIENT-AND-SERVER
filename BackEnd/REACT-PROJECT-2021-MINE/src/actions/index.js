@@ -10,12 +10,41 @@ export const fetchUser = () => async dispatch => {
 
 const fetchBooksList = (searchTerm) => {
     return async (dispatch) => {
-        const response = await googleBooksApi.get('/photos', {
-            params: { q: searchTerm }
-        })
-
-        dispatch({ type: 'FETCH_BOOKS', payload: response.data.slice(1, 100) })
+        console.log('sT:', searchTerm)
+        const response = await axios.get('https://www.googleapis.com/books/v1/volumes',
+            {
+                params: { q: searchTerm }
+            }
+        )
+        dispatch({ type: 'FETCH_BOOKS', payload: response.data.items })
     };
 }
 
-export { fetchBooksList }
+
+// const searchBook = async () => {
+//     const booksData = await axios.get(baseURL,
+//         {
+//             params: { q: searchTerm }
+//         }
+//     )
+//     setBooks(booksData.data.items);
+// }
+
+
+
+const searchTerm = (term) => {
+    return {
+        type: 'SEARCH_TERM',
+        payload: term
+    }
+}
+
+const clearSearchTerm = () => {
+    return {
+        type: 'CLEAR_SEARCH_TERM',
+        payload: ''
+    }
+}
+
+
+export { fetchBooksList, searchTerm, clearSearchTerm }

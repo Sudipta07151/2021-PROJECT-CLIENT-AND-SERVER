@@ -10,6 +10,7 @@ import ManualSignUpForm from './ManualSignUpForm';
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReduxBookList from './ReduxBookList';
 import * as actions from '../actions'
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +50,12 @@ const App = (props) => {
                 <Route path='/LibraryMain'>
                     <LibraryMain />
                 </Route>
+                {/* -------------------------------- */}
+                <Route path="/BookList">
+                    <ReduxBookList />
+                </Route>
+
+                {/* ----------------------- */}
                 <Route path='/SignIn'>
                     <SignUp />
                 </Route>
