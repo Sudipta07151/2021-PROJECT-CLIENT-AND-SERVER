@@ -42,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const BookCard = ({ image, title, author, isbn }) => {
+const BookCard = (props) => {
     const classes = useStyles();
-
+    const { image, title, author, isbn } = props;
 
     return (
         <Card className={classes.root}>
@@ -72,7 +72,7 @@ const BookCard = ({ image, title, author, isbn }) => {
                 </Typography>
             </CardContent>
             <IconButton aria-label="add to favorites"
-                onClick={() => selectBook(isbn)}
+                onClick={() => props.selectBook(props.isbn)}
             >
                 <FavoriteIcon />
             </IconButton>
@@ -84,7 +84,6 @@ const BookCard = ({ image, title, author, isbn }) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.selectedBook);
     return {
         selectedBook: state.selectedBook
     }

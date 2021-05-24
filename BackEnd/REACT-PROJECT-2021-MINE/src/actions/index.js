@@ -31,7 +31,7 @@ const fetchBooksList = (searchTerm) => {
 // }
 
 const selectBook = (book) => {
-    console.log(book)
+    console.log('select book action creator:', book)
     return {
         type: 'SELECT_BOOK',
         payload: book
