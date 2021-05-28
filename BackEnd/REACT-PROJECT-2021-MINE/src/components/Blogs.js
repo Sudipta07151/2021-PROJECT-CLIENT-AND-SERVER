@@ -71,6 +71,7 @@ const Blogs = (props) => {
 
     const onSubmit = (formProps) => {
         console.log(formProps);
+        console.log(state)
         alert('SUBMMITED----view details in console');
     }
 
@@ -115,6 +116,7 @@ const Blogs = (props) => {
             />
         )
     }
+
     return (
         <div>
             <Container>

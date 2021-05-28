@@ -8,6 +8,7 @@ require('./models/Post');
 require('./models/manualUser');
 require('./models/profile');
 require('./services/passport');
+require('./models/bookSelect');
 const app = express();
 
 app.use(
@@ -25,6 +26,7 @@ require('./routes/authRoutes')(app);
 // require('./routes/postsRoutes')(app);
 require('./routes/getManualUserRoute')(app);
 require('./routes/profile')(app);
+require('./routes/selectBookRoute')(app);
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 
