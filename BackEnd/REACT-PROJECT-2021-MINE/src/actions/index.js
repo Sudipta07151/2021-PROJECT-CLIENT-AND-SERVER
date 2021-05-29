@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { FETCH_USER } from './types';
-import googleBooksApi from '../apis/googleBooksApi';
+// import googleBooksApi from '../apis/googleBooksApi';
 
 
 export const fetchUser = () => async dispatch => {
@@ -20,6 +20,45 @@ const fetchBooksList = (searchTerm) => {
     };
 }
 
+const selectBook = (isbn, title) => {
+    console.log(isbn, title);
+    const config = {
+        'Content-Type': 'application/json'
+    }
+    const body = {
+        isbn: isbn,
+        name: title
+    };
+    console.log('body:', body);
+    return async (dispatch) => {
+        try {
+            const res = await axios.post('/api/library/select', body, config);
+            dispatch({
+                type: 'SELECT_BOOK',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
+
+const myBookList = userID => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/api/library/getbooks/${userID}`);
+            dispatch({
+                type: 'MY_BOOKS',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
+
 
 // const searchBook = async () => {
 //     const booksData = await axios.get(baseURL,
@@ -30,13 +69,13 @@ const fetchBooksList = (searchTerm) => {
 //     setBooks(booksData.data.items);
 // }
 
-const selectBook = (book) => {
-    console.log('select book action creator:', book)
-    return {
-        type: 'SELECT_BOOK',
-        payload: book
-    }
-};
+// const selectBook = (isbn, title) => {
+//     console.log('select book action creator:', isbn, title)
+//     return {
+//         type: 'SELECT_BOOK',
+//         payload: { isbn: isbn, title: title }
+//     }
+// };
 
 
 
@@ -57,4 +96,4 @@ const clearSearchTerm = () => {
 
 
 
-export { fetchBooksList, selectBook, searchTerm, clearSearchTerm }
+export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList }

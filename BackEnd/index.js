@@ -20,6 +20,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
+app.use(express.urlencoded());
 
 require('./routes/manualAuthRoutes')(app);
 require('./routes/authRoutes')(app);
@@ -27,6 +28,7 @@ require('./routes/authRoutes')(app);
 require('./routes/getManualUserRoute')(app);
 require('./routes/profile')(app);
 require('./routes/selectBookRoute')(app);
+require('./routes/getAllFavBooks')(app);
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 

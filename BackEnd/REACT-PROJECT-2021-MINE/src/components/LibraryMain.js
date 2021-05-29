@@ -16,6 +16,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 // import InsertNew from './InsertNew';
+import { connect } from 'react-redux';
 import ReduxBookList from './ReduxBookList';
 import ViewAllBooks from './ViewAllBooks';
 
@@ -56,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LibraryMain = (props) => {
+    // console.log(props.auth._id)
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -193,5 +195,11 @@ const LibraryMain = (props) => {
     );
 }
 
-export default LibraryMain;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(LibraryMain);
 

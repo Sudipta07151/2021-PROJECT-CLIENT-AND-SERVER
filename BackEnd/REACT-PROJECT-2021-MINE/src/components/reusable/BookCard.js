@@ -72,7 +72,7 @@ const BookCard = (props) => {
                 </Typography>
             </CardContent>
             <IconButton aria-label="add to favorites"
-                onClick={() => props.selectBook(props.isbn)}
+                onClick={() => props.selectBook(isbn, title)}
             >
                 <FavoriteIcon />
             </IconButton>
