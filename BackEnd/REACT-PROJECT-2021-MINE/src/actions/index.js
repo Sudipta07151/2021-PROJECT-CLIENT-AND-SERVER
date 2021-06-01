@@ -93,7 +93,20 @@ const clearSearchTerm = () => {
     }
 }
 
+const getAllBooks = () => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/api/library/getAll`);
+            dispatch({
+                type: 'ALL_BOOKS',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
 
 
-
-export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList }
+export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList, getAllBooks }

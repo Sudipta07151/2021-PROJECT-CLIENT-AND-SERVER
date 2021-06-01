@@ -21,12 +21,13 @@ function createData(title, isbn, date) {
 }
 
 
-
-
 const ViewAllBooks = (props) => {
+    console.log(props.auth);
     const classes = useStyles();
     react.useEffect(() => {
-        props.getBookList('60871d953b118b0888bd0142');
+        //props.getBookList('60871d953b118b0888bd0142');
+        if (props.auth)
+            props.getBookList(props.auth._id);
     }, [props.getBookList])
     // const rows = props.bookList.map((data) => {
     //     return createData(data.name, data.isbn, data.dateAdded)
@@ -69,9 +70,10 @@ const ViewAllBooks = (props) => {
 }
 
 const mapStateTotprops = (state) => {
-    console.log(state)
+    // console.log(state)
     return {
         bookList: state.favBooks,
+        auth: state.auth
     }
 }
 

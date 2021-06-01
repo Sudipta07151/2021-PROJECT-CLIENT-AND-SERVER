@@ -19,6 +19,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReduxBookList from './ReduxBookList';
 import ViewAllBooks from './ViewAllBooks';
+import AllBooks from './AllBooks';
 
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, useLocation, useHistory, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
@@ -86,7 +87,7 @@ const LibraryMain = (props) => {
     const menuItems = [
         {
             key: 1,
-            item: 'View All Created',
+            item: 'My Library',
             icon: <ViewComfyRoundedIcon />,
             //link: `LibraryMain/view`
             link: `view`
@@ -97,6 +98,13 @@ const LibraryMain = (props) => {
             icon: <AddCircleOutlineIcon />,
             //link: `LibraryMain/insert`
             link: `insert`
+        },
+        {
+            key: 3,
+            item: 'All ',
+            icon: <AddCircleOutlineIcon />,
+            //link: `LibraryMain/insert`
+            link: `all`
         }
     ]
 
@@ -187,6 +195,9 @@ const LibraryMain = (props) => {
                         </Route>
                         <Route path={`${path}/view`}>
                             <ViewAllBooks />
+                        </Route>
+                        <Route path={`${path}/all`}>
+                            <AllBooks />
                         </Route>
                     </Switch>
                 </main>
