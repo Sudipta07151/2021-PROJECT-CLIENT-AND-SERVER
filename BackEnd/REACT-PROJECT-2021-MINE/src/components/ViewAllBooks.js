@@ -1,6 +1,7 @@
 import * as react from 'react';
 import { connect } from 'react-redux';
 import { myBookList } from '../actions';
+import FavBookListUser from '../components/reusable/FavBookListUser';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -32,41 +33,61 @@ const ViewAllBooks = (props) => {
     // const rows = props.bookList.map((data) => {
     //     return createData(data.name, data.isbn, data.dateAdded)
     // })
+    // const renderList = () => {
+    //     {
+    //         if (!props.bookList[0])
+    //             return (
+    //                 <TableCell>LOADING</TableCell>
+    //             )
+    //         else
+    //             return (props.bookList[0].map((data) => (
+    //                 <TableRow key={data.isbn}>
+    //                     <TableCell component="th" scope="row">
+    //                     </TableCell>
+    //                     <TableCell >{data.name}</TableCell>
+    //                     <TableCell >{data.isbn}</TableCell>
+    //                     <TableCell >{data.dateAdded}</TableCell>
+    //                 </TableRow>
+    //             ))
+    //             )
+    //     }
+    // }
+    // return (
+    //     <TableContainer component={Paper}>
+    //         <Table className={classes.table} aria-label="simple table">
+    //             <TableHead>
+    //                 <TableRow>
+    //                     <TableCell>TITLE</TableCell>
+    //                     <TableCell align="right">ISBN</TableCell>
+    //                     <TableCell align="right">DATE ADDED</TableCell>
+    //                 </TableRow>
+    //             </TableHead>
+    //             <TableBody>
+    //                 {renderList()}
+    //             </TableBody>
+    //         </Table>
+    //     </TableContainer>
+    // )
+
     const renderList = () => {
-        {
-            if (!props.bookList[0])
-                return (
-                    <TableCell>LOADING</TableCell>
-                )
-            else
-                return (props.bookList[0].map((data) => (
-                    <TableRow key={data.isbn}>
-                        <TableCell component="th" scope="row">
-                        </TableCell>
-                        <TableCell >{data.name}</TableCell>
-                        <TableCell >{data.isbn}</TableCell>
-                        <TableCell >{data.dateAdded}</TableCell>
-                    </TableRow>
-                ))
-                )
+        if (!props.bookList[0]) {
+            return (
+                <TableCell>LOADING</TableCell>
+            )
         }
+        return (props.bookList[0].map((data) => {
+            return (
+                <FavBookListUser book={data} />
+            )
+        })
+        )
     }
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>TITLE</TableCell>
-                        <TableCell align="right">ISBN</TableCell>
-                        <TableCell align="right">DATE ADDED</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {renderList()}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div>
+            {renderList()}
+        </div>
     )
+
 }
 
 const mapStateTotprops = (state) => {
