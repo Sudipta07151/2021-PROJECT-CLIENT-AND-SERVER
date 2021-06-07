@@ -9,13 +9,14 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        maxWidth: 752,
-    },
+    // root: {
+    //     flexGrow: 1,
+    //     maxWidth: 752,
+    // },
     demo: {
         backgroundColor: theme.palette.background.paper,
     },
@@ -31,27 +32,41 @@ const InteractiveList = (props) => {
     const [dense, setDense] = React.useState(false);
 
     return (
-        <div className={classes.root}>
-            <div className={classes.demo}>
-                <List dense={dense}>
-                    <ListItem>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <FolderIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={props.book.name}
-                            secondary={props.book.dateAdded}
-                        />
+        <div className={classes.demo}>
+            <List dense={dense}>
+                <ListItem>
+                    <Grid container>
+                        <Grid item xs={4}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <FolderIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <ListItemText
+                                primary={props.book.name}
+                                secondary={props.book.dateAdded}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container>
+                        <Grid item xs={2}>
+                            <ListItemText>
+                                <Typography>
+                                    {props.book._user.name ? props.book._user.name : null}
+                                </Typography>
+                            </ListItemText>
+                        </Grid>
                         <ListItemSecondaryAction>
                             <IconButton edge="end" aria-label="delete">
                                 <DeleteIcon />
                             </IconButton>
                         </ListItemSecondaryAction>
-                    </ListItem>
-                </List>
-            </div>
+                        {props.children ? props.children : null}
+                    </Grid>
+                </ListItem>
+            </List>
         </div>
     );
 }

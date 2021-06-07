@@ -20,7 +20,7 @@
       "title": "Order a pizza!",
       "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "category": "todos",
-      "likes": 81,
+      "likes": 88,
       "id": 3,
       "favourite": true
     },
@@ -62,22 +62,6 @@
       "category": "todos",
       "likes": 25,
       "id": 8,
-      "favourite": false
-    },
-    {
-      "title": "Complete my ninja training",
-      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.",
-      "category": "work",
-      "likes": 23,
-      "id": 9,
-      "favourite": false
-    },
-    {
-      "title": "Order a pizza!",
-      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "category": "todos",
-      "likes": 22,
-      "id": 10,
       "favourite": false
     }
   ]

@@ -24,7 +24,7 @@ app.use(express.urlencoded());
 
 require('./routes/manualAuthRoutes')(app);
 require('./routes/authRoutes')(app);
-// require('./routes/postsRoutes')(app);
+require('./routes/postsRoutes')(app);
 require('./routes/getManualUserRoute')(app);
 require('./routes/profile')(app);
 require('./routes/selectBookRoute')(app);

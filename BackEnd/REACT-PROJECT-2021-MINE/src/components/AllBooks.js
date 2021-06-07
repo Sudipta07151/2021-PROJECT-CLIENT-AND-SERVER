@@ -1,7 +1,12 @@
 import react from 'react';
+import Grid from '@material-ui/core/Grid';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import { getAllBooks } from '../actions/index';
+import FavBookListUser from '../components/reusable/FavBookListUser';
+import LendBorrowBtn from '../components/reusable/LendBorrowBtn';
+import Container from '@material-ui/core/Container';
+
 
 const AllBooks = (props) => {
     console.log('props:', props.AllBooks)
@@ -14,11 +19,14 @@ const AllBooks = (props) => {
             return (
                 props.AllBooks.map(data => {
                     return (
-                        <li>
-                            <p>ISBN: {data.isbn}</p>
-                            <p>TITLE:{data.name}</p>
-                            <p>CONTRIBUTED BY:{data._user.name}</p>
-                        </li>
+                        // <li>
+                        //     <p>ISBN: {data.isbn}</p>
+                        //     <p>TITLE:{data.name}</p>
+                        //     <p>CONTRIBUTED BY:{data._user.name}</p>
+                        // </li>
+                        <FavBookListUser book={data}>
+                            <LendBorrowBtn />
+                        </FavBookListUser>
                     )
                 })
             )
@@ -31,9 +39,9 @@ const AllBooks = (props) => {
     }
 
     return (
-        <div>
+        <Grid>
             {renderList()}
-        </div>
+        </Grid>
     )
 }
 const mapStateToProps = (state) => {

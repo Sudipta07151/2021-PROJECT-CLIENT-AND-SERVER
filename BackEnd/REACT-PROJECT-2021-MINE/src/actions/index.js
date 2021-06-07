@@ -109,4 +109,26 @@ const getAllBooks = () => {
 }
 
 
-export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList, getAllBooks }
+const AddBlogPost = (data) => {
+    console.log('FROM ACTION CREATOR', data);
+    const config = {
+        'Content-Type': 'application/json'
+    }
+    const body = data;
+    console.log('body:', body);
+    return async (dispatch) => {
+        try {
+            const res = await axios.post('/api/blog', body, config);
+            dispatch({
+                type: 'ADD_POST',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
+
+
+export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList, getAllBooks, AddBlogPost }

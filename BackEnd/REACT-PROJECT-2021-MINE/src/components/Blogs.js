@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
-
+import { connect } from 'react-redux';
+import { AddBlogPost } from '../actions/index';
 
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core';
@@ -34,15 +35,17 @@ const Blogs = (props) => {
     console.log(props)
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
+    const [post, setPost] = useState({})
     const [titleError, setTitleError] = useState(false);
     const [postError, setPostError] = useState(false);
     const classes = useStyles();
-    // const getValPostTitle = (e) => {
-    //     setPostTitle(e.target.value);
-    // }
-    // const getValPostBody = (e) => {
-    //     setPostBody(e.target.value);
-    // }
+
+    const getValPostTitle = (e) => {
+        setPostTitle(e.target.value);
+    }
+    const getValPostBody = (e) => {
+        setPostBody(e.target.value);
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         setPostError(false);
@@ -54,7 +57,11 @@ const Blogs = (props) => {
         if (postTitle && postBody) {
             setPostTitle('');
             setPostBody('');
+            const post = { postTitle, postBody, state };
+            props.AddBlogPost(post)
+            console.log(post);
         }
+
     }
     const [state, setState] = React.useState({
         art: false,
@@ -69,20 +76,20 @@ const Blogs = (props) => {
 
     const { art, education, technical, other } = state;
 
-    const onSubmit = (formProps) => {
-        console.log(formProps);
-        console.log(state)
-        alert('SUBMMITED----view details in console');
-    }
+    // const onSubmit = (formProps) => {
+    //     console.log(formProps);
+    //     console.log(state)
+    //     alert('SUBMMITED----view details in console');
+    // }
 
     const renderBlogTitle = (formProps) => {
         // console.log(formProps);
         return (
             <TextField
-                // onChange={getValPostTitle}
-                // value={postTitle}
-                // onChange={formProps.input.onChange}
-                {...formProps.input}
+                onChange={getValPostTitle}
+                value={postTitle}
+                //onChange={formProps.input.onChange}
+                // {...formProps.input}
                 label="Blog Title"
                 variant="outlined"
                 color="secondary"
@@ -100,10 +107,10 @@ const Blogs = (props) => {
         // console.log(formProps);
         return (
             <TextField
-                // onChange={getValPostBody}
-                // value={postBody}
+                onChange={getValPostBody}
+                value={postBody}
                 // onChange={formProps.input.onChange}
-                {...formProps.input}
+                // {...formProps.input}
                 label="Post"
                 variant="outlined"
                 color="secondary"
@@ -120,9 +127,12 @@ const Blogs = (props) => {
     return (
         <div>
             <Container>
-                <form noValidate autoComplete="off" onSubmit={props.handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit}>
+                    {/* <form noValidate autoComplete="off" onSubmit={props.handleSubmit(onSubmit)}>
                     <Field name="blogTitle" component={renderBlogTitle} />
-                    <Field name="blogBody" component={renderBlogBody} />
+                    <Field name="blogBody" component={renderBlogBody} /> */}
+                    {renderBlogTitle()}
+                    {renderBlogBody()}
                     <FormControl component="fieldset" className={classes.formControl}>
                         <FormLabel component="legend">SELECT TAGS</FormLabel>
                         <FormGroup className={classes.formGroup}>
@@ -162,15 +172,23 @@ const Blogs = (props) => {
                     >
                         Submit Post
                     </Button>
-
                 </form>
             </Container>
         </div >
     )
 }
 
-export default reduxForm({
-    form: 'BLOG_POST_FORM'
-})(Blogs);
+// export default reduxForm({
+//     form: 'BLOG_POST_FORM'
+// })(Blogs);
 
+const mapStateTotprops = (state) => {
+    console.log(state)
+    return {
+        data: 'HELLO'
+    }
+}
+
+
+export default connect(mapStateTotprops, { AddBlogPost })(Blogs);
 

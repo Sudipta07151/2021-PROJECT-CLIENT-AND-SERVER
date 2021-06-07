@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
 const { check, validationResult } = require('express-validator');
-const manualAuthMiddleware = require('../middlewares/manualAuth');
+// const manualAuthMiddleware = require('../middlewares/manualAuth');
 const Profile = mongoose.model('userProfile');
 const Users = mongoose.model('manualUsers');
+const User = mongoose.model('users');
 const Post = mongoose.model('Post');
+const requireLogin = require('../middlewares/requireLogin');
+
 module.exports = app => {
-    app.post('/api/post',
+    app.post('/api/blog',
         [
             requireLogin,
             [
-                check('body', 'Body is required').not().isEmpty(),
-                check('header', 'Header is required').not().isEmpty(),
+                check('body', 'Body is required').isEmpty(),
+                check('header', 'Header is required').isEmpty(),
             ]
         ],
         async (req, res) => {
@@ -18,14 +21,26 @@ module.exports = app => {
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() })
             }
-            const user = await Users.findById(req.user.id).select('-password');
-            const newPost = {
-                header: req.body.header,
-                body: req.body.body,
-                name: user.name,
-                avatar: user.pictureURL,
-                user: req.user.id
+
+            try {
+                console.log(req);
+                const user = await User.findById(req.user._id)
+                // .select('-password');
+                const newPost = new Post({
+                    header: req.body.postTitle,
+                    body: req.body.postBody,
+                    name: user.name,
+                    tags: req.body.state,
+                    // avatar: user.pictureURL,
+                    _user: req.user._id
+                })
+                const post = await newPost.save();
+                res.json(post);
             }
+            catch (err) {
+                res.status(500).send("SERVER ERROR");
+            }
+
         });
 };
 

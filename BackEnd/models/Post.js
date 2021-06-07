@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-    user: {
+    _user: {
         type: Schema.Types.ObjectId,
-        ref: 'manualUsers',
+        // ref: 'manualUsers',
+        ref: 'users'
     },
     header: {
         type: String,
@@ -18,8 +19,14 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    avatar: {
-        type: String
+    // avatar: {
+    //     type: String
+    // },
+    tags: {
+        art: { type: Boolean, default: false },
+        education: { type: Boolean, default: false },
+        technical: { type: Boolean, default: false },
+        other: { type: Boolean, default: false }
     },
     date: {
         type: Date,
@@ -29,14 +36,17 @@ const PostSchema = new Schema({
         {
             user: {
                 type: Schema.Types.ObjectId,
-                ref: 'manualUsers'
+                // ref: 'manualUsers'
+                ref: 'users'
             }
         }
     ],
     comments: [{
         user: {
             type: Schema.Types.ObjectId,
-            ref: 'manualUsers'
+            // ref: 'manualUsers'
+            ref: 'users'
+
         },
         text: {
             type: String,
