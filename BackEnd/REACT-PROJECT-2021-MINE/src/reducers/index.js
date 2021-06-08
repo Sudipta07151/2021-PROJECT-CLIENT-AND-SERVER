@@ -6,6 +6,7 @@ import searchReducer from './searchReducer';
 import selectBookReducer from './selectBookReducer';
 import allFavBooksReducer from './allFavBooksReducer';
 import allBooksReducer from './allBooksReducer';
+import getAllPostsReducer from './getAllPostsReducer';
 
 export default combineReducers({
     auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     search: searchReducer,
     selectedBook: selectBookReducer,
     favBooks: allFavBooksReducer,
-    allBooks: allBooksReducer
+    allBooks: allBooksReducer,
+    allPosts: getAllPostsReducer
 });

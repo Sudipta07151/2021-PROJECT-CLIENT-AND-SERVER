@@ -131,4 +131,21 @@ const AddBlogPost = (data) => {
 }
 
 
-export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList, getAllBooks, AddBlogPost }
+const FetchBlogPost = () => {
+    console.log('FROM FETCH_BLOG_ACTION CREATOR');
+    return async (dispatch) => {
+        try {
+            const res = await axios.get('/api/getblogs');
+            dispatch({
+                type: 'GET_ALL_POSTS',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
+
+
+export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList, getAllBooks, AddBlogPost, FetchBlogPost }

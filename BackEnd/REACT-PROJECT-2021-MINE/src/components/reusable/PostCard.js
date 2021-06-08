@@ -54,29 +54,29 @@ const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
             <CardHeader
                 avatar={
                     <Avatar className={classes.avatar}>
-                        {data.category[0].toUpperCase()}
+                        {data.name.toUpperCase()}
                     </Avatar>
                 }
                 action={
                     <IconButton onClick={() => {
-                        handleDelete(data.id);
+                        handleDelete(data._id);
                     }}>
                         <DeleteOutlineIcon />
                     </IconButton>
                 }
-                title={data.title}
-                subheader={data.category}
+                title={data.header}
+                subheader={data.name}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary">
-                    {data.details}
+                    {data.body}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton
                     aria-label="add to favorites"
                     onClick={() => favUpdate(data.id, data.favourite)}
-                    color={data.favourite == false ? "primary" : "secondary"}
+                    color={data.name == false ? "primary" : "secondary"}
                 >
                     <FavoriteIcon />
                 </IconButton>
@@ -85,7 +85,7 @@ const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
                 </IconButton>
                 <IconButton
                     aria-label="share"
-                    onClick={() => likesUpdate(data.id, data.likes)}
+                    onClick={() => likesUpdate(data._id, data.likes)}
                 >
                     <ThumbUpAltIcon />
                 </IconButton>
