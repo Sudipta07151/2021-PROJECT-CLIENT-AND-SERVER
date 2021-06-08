@@ -7,7 +7,7 @@ module.exports = (app) => {
         async (req, res) => {
             try {
                 const data = await allBooks.find().
-                    populate('_user', ['name']);;
+                    populate('_user', ['name'])
                 res.status(200).json(data);
             }
             catch (err) {

@@ -148,4 +148,39 @@ const FetchBlogPost = () => {
 }
 
 
-export { fetchBooksList, selectBook, searchTerm, clearSearchTerm, myBookList, getAllBooks, AddBlogPost, FetchBlogPost }
+const fetchMyBlogs = userID => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/api/getblogs/${userID}`);
+            dispatch({
+                type: 'MY_BLOGS',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
+
+const deletePost = postID => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.delete(`/api/deleteblogs/${postID}`);
+            dispatch({
+                type: 'DELETE_BLOG',
+                payload: postID
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
+
+export {
+    fetchBooksList, selectBook, searchTerm,
+    clearSearchTerm, myBookList,
+    getAllBooks, AddBlogPost, FetchBlogPost, fetchMyBlogs,
+    deletePost
+}

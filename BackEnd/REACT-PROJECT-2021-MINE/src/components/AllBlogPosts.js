@@ -82,7 +82,7 @@ const AllBlogPosts = (props) => {
                     // note.map(data =>
                     props.allPosts.map(data => {
                         return (
-                            <div key={data.id}>
+                            <div key={data._id}>
                                 <PostCard
                                     // data={data}
                                     data={data}

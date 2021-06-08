@@ -7,7 +7,7 @@ import selectBookReducer from './selectBookReducer';
 import allFavBooksReducer from './allFavBooksReducer';
 import allBooksReducer from './allBooksReducer';
 import getAllPostsReducer from './getAllPostsReducer';
-
+import myBlogsReducer from './myBlogsReducer';
 export default combineReducers({
     auth: authReducer,
     form: formReducer,
@@ -16,5 +16,6 @@ export default combineReducers({
     selectedBook: selectBookReducer,
     favBooks: allFavBooksReducer,
     allBooks: allBooksReducer,
-    allPosts: getAllPostsReducer
+    allPosts: getAllPostsReducer,
+    myAllPosts: myBlogsReducer
 });

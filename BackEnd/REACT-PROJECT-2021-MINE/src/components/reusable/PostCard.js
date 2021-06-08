@@ -14,7 +14,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
-
+import CommentIcon from '@material-ui/icons/Comment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -82,6 +82,9 @@ const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
                 </IconButton>
                 <IconButton aria-label="share">
                     <ShareIcon />
+                </IconButton>
+                <IconButton aria-label="share">
+                    <CommentIcon />
                 </IconButton>
                 <IconButton
                     aria-label="share"
