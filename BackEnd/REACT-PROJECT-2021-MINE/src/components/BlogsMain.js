@@ -22,9 +22,10 @@ import StarsIcon from '@material-ui/icons/Stars';
 import FaceIcon from '@material-ui/icons/Face'
 
 import Blogs from './Blogs';
-import ViewAllBlogs from './ViewAllBlogs'
-import AllBlogPosts from './AllBlogPosts'
-import FavouritePosts from './FavouritePosts'
+import ViewAllBlogs from './ViewAllBlogs';
+import AllBlogPosts from './AllBlogPosts';
+import IndividualBlog from './IndividualBlog';
+import FavouritePosts from './FavouritePosts';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from 'react-router-dom'
 const drawerWidth = 240;
 
@@ -206,8 +207,11 @@ const BlogsMain = (props) => {
                     {url == 'BlogsMain/view' ? <ViewAllBlogs /> : null}
                     {url == 'BlogsMain/all' ? <AllBlogPosts /> : null}
                     {url == 'BlogsMain/favourites' ? <FavouritePosts /> : null} */}
-                    <Redirect from={`${path}`} to={`${path}/all`} />
+                    {/* <Redirect from={`${path}`} to={`${path}/all`} /> */}
                     <Switch>
+                        <Route exact path={`${path}/`}>
+                            <AllBlogPosts />
+                        </Route>
                         <Route path={`${path}/blogs`}>
                             <Blogs />
                         </Route>
@@ -219,6 +223,9 @@ const BlogsMain = (props) => {
                         </Route>
                         <Route path={`${path}/favourites`}>
                             <FavouritePosts />
+                        </Route>
+                        <Route path={`${path}/blog/:id`}>
+                            < IndividualBlog />
                         </Route>
                     </Switch>
                 </main>

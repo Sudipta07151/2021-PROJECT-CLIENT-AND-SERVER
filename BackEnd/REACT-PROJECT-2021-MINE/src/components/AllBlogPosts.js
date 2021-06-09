@@ -60,7 +60,9 @@ const AllBlogPosts = (props) => {
     //         setUpdate(true);
     //     });
     // }
-    const favUpdate = () => { }
+    const favUpdate = (event) => {
+        console.log(event);
+    }
     const likesUpdate = () => { }
     const handleDelete = () => { }
 
@@ -88,7 +90,7 @@ const AllBlogPosts = (props) => {
                                     data={data}
                                     handleDelete={handleDelete}
                                     likesUpdate={likesUpdate}
-                                    favUpdate={favUpdate}
+                                    favUpdate={() => favUpdate(data)}
                                 />
                             </div>
                         )
