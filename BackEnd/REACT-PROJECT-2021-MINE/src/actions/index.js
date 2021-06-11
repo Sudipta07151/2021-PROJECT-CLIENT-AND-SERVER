@@ -178,9 +178,25 @@ const deletePost = postID => {
     }
 }
 
+const fetchSingleBlogs = postID => {
+    console.log('postId', postID)
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/api/getSingleBlog/${postID}`);
+            dispatch({
+                type: 'SINGLE_BLOG',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
+
 export {
     fetchBooksList, selectBook, searchTerm,
     clearSearchTerm, myBookList,
     getAllBooks, AddBlogPost, FetchBlogPost, fetchMyBlogs,
-    deletePost
+    deletePost, fetchSingleBlogs
 }

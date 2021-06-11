@@ -55,4 +55,20 @@ module.exports = (app) => {
                 res.status(500).send('SERVER ERROR');
             }
         })
+
+    app.get('/api/getSingleBlog/:post_id',
+        async (req, res) => {
+            try {
+                const data = await Posts.findById(req.params.post_id);
+                // populate('_user', ['name']);
+                res.json(data);
+            }
+            catch (err) {
+                if (err.kind === 'ObjectId') {
+                    return res.status(404).json({ msg: 'Post Not Found' });
+                }
+                console.error(err.message);
+                res.status(500).send('SERVER ERROR');
+            }
+        })
 }
