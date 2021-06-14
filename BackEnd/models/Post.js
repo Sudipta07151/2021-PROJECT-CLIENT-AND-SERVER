@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = mongoose.model('users');
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
@@ -36,7 +37,7 @@ const PostSchema = new Schema({
         {
             user: {
                 type: Schema.Types.ObjectId,
-                // ref: 'manualUsers'
+                // ref: 'manualUsers',
                 ref: 'users'
             }
         }
@@ -44,7 +45,7 @@ const PostSchema = new Schema({
     comments: [{
         user: {
             type: Schema.Types.ObjectId,
-            // ref: 'manualUsers'
+            // ref: 'manualUsers',
             ref: 'users'
 
         },

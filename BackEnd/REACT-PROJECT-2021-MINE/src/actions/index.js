@@ -194,9 +194,28 @@ const fetchSingleBlogs = postID => {
     }
 }
 
+const likeBlog = postID => {
+    console.log('LIKES BLOG CALLED', postID);
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/api/like/${postID}`);
+            console.log('finished');
+            dispatch({
+                type: 'LIKE_POST',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+
+
 export {
     fetchBooksList, selectBook, searchTerm,
     clearSearchTerm, myBookList,
     getAllBooks, AddBlogPost, FetchBlogPost, fetchMyBlogs,
-    deletePost, fetchSingleBlogs
+    deletePost, fetchSingleBlogs, likeBlog
 }

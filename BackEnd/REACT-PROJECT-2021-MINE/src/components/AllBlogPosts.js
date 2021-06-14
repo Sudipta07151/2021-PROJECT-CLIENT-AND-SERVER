@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { FetchBlogPost } from '../../src/actions/index'
+import { FetchBlogPost, likeBlog } from '../../src/actions/index'
 
 import PostCard from '../components/reusable/PostCard'
 import Masonry from 'react-masonry-css';
@@ -63,7 +63,7 @@ const AllBlogPosts = (props) => {
     const favUpdate = (event) => {
         console.log(event);
     }
-    const likesUpdate = () => { }
+    // const likesUpdate = () => { }
     const handleDelete = () => { }
 
 
@@ -89,7 +89,7 @@ const AllBlogPosts = (props) => {
                                     // data={data}
                                     data={data}
                                     handleDelete={handleDelete}
-                                    likesUpdate={likesUpdate}
+                                    likesUpdate={likeBlog(data._id)}
                                     favUpdate={() => favUpdate(data)}
                                 />
                             </div>
@@ -107,4 +107,4 @@ const mapStateTotprops = (state) => {
     }
 }
 
-export default connect(mapStateTotprops, { FetchBlogPost })(AllBlogPosts);
+export default connect(mapStateTotprops, { FetchBlogPost, likeBlog })(AllBlogPosts);

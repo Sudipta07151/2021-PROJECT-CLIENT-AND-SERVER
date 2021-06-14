@@ -42,6 +42,21 @@ module.exports = app => {
             }
 
         });
+    app.get('/api/like/:post_id',
+        requireLogin,
+        async (req, res) => {
+            try {
+                console.log(req)
+                const post = await Post.findById(req.params.post_id);
+                post.likes.unshift({ user: req.user.id });
+                await post.save();
+                res.json(post.likes);
+            }
+            catch (err) {
+                console.error(err.message);
+                res.status(500).send('SERVER ERROR');
+            }
+        })
 };
 
 // user: {

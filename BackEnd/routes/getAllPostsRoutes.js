@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Posts = mongoose.model('Post');
 
 
+
 module.exports = (app) => {
     app.get('/api/getblogs',
         async (req, res) => {
