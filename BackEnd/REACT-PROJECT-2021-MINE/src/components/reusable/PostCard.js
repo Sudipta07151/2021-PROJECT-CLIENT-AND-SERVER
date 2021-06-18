@@ -99,9 +99,9 @@ const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
                 >
                     <ThumbUpAltIcon />
                 </IconButton>
-                <Badge color="secondary" badgeContent={data.likes} max={2000}>
+                {/* <Badge color="secondary" badgeContent={data.likes} max={2000}>
                     <Typography>Likes</Typography>
-                </Badge>
+                </Badge> */}
             </CardActions>
         </Card>
 
