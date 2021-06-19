@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { addComment } from '../actions/index';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AddComment = () => {
+const AddComment = (props) => {
     const classes = useStyles();
     const [value, setValue] = React.useState('');
 
@@ -25,30 +27,44 @@ const AddComment = () => {
         }
     };
 
+    const resetBox = (e) => {
+        setValue('');
+        e.target.value = '';
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (value) {
             console.log(value);
+            props.addComment(props.postID, value)
             setValue('');
         }
     }
 
     return (
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-            <div>
-                <TextField
-                    id="standard-multiline-flexible"
-                    label="Add Comment"
-                    multiline
-                    rowsMax={4}
-                    value={value}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <Button className={classes.margin} variant="outlined">COMMENT</Button>
-            <Button className={classes.margin} variant="outlined">CANCEL</Button>
+            <TextField
+                id="standard-multiline-flexible"
+                label="Add Comment"
+                multiline
+                rowsMax={4}
+                value={value}
+                onChange={handleChange}
+                required
+            />
+            <Button className={classes.margin} variant="outlined" type="submit">COMMENT</Button>
+            <Button className={classes.margin} variant="outlined"
+                onClick={resetBox}
+            >
+                CANCEL</Button>
         </form>
     );
 }
-export default AddComment;
+
+const mapStateToProps = (state) => {
+    return {
+        hey: 'hey'
+    }
+}
+
+export default connect(mapStateToProps, { addComment })(AddComment);

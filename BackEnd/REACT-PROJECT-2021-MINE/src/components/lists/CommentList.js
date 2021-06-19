@@ -14,12 +14,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CommentList = () => {
+const CommentList = (props) => {
+    console.log('from comment list:', props.commentList)
     const classes = useStyles();
-
     return (
         <List className={classes.root}>
-            <Comment />
+            {
+                props.commentList.map(data => {
+                    return (
+                        <Comment data={data} />
+                    )
+                })
+            }
         </List>
     );
 }

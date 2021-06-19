@@ -42,12 +42,17 @@ module.exports = app => {
             }
 
         });
-    app.get('/api/like/:post_id',
+
+    app.put('/api/like/:post_id',
         requireLogin,
         async (req, res) => {
             try {
                 console.log(req)
                 const post = await Post.findById(req.params.post_id);
+
+                if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+                    return res.status(400).json({ msg: 'Post Already Liked' })
+                }
                 post.likes.unshift({ user: req.user.id });
                 await post.save();
                 res.json(post.likes);
@@ -56,7 +61,42 @@ module.exports = app => {
                 console.error(err.message);
                 res.status(500).send('SERVER ERROR');
             }
-        })
+        });
+
+    app.post('/api/post/comment/:post_id',
+        [
+            requireLogin,
+            [
+                check('body.value', 'Body is required').isEmpty()
+            ]
+        ],
+        async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() })
+            }
+
+            try {
+                console.log(req);
+                const user = await User.findById(req.user.id)
+                const post = await Post.findById(req.params.post_id);
+                // .select('-password');
+                const newComment = {
+                    pic: user.pictureURL,
+                    uname: req.user.name,
+                    text: req.body.value,
+                    user: req.user.id
+                }
+                post.comments.unshift(newComment);
+                post.save();
+                res.json(post.comments);
+                console.log(req.body.value)
+                console.log(req.user.name)
+            }
+            catch (err) {
+                res.status(500).send("SERVER ERROR");
+            }
+        });
 };
 
 // user: {

@@ -17,16 +17,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function AlignItemsList() {
+export default function AlignItemsList(props) {
+    console.log('FROM COMMENT :', props)
     const classes = useStyles();
-
+    if (props.data) {
+        var created_date = new Date(props.data.date);
+        var date = created_date.toDateString();
+        var time = created_date.toTimeString();
+    }
     return (
         <ListItem alignItems="flex-start">
             <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar alt={props.data.uname[0]} src={props.data.pic} />
             </ListItemAvatar>
             <ListItemText
-                primary="Brunch this weekend?"
+                //primary="Brunch this weekend?"
+                primary={props.data.text}
                 secondary={
                     <React.Fragment>
                         <Typography
@@ -35,9 +41,11 @@ export default function AlignItemsList() {
                             className={classes.inline}
                             color="textPrimary"
                         >
-                            Ali Connors
-              </Typography>
-                        {" — I'll be in your neighborhood doing errands this…"}
+                            {/* Ali Connors */}
+                            {props.data.uname}
+                        </Typography>
+                        {/* {" — I'll be in your neighborhood doing errands this…"} */}
+                        {date}
                     </React.Fragment>
                 }
             />

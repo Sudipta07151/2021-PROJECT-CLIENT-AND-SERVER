@@ -49,6 +49,14 @@ const PostSchema = new Schema({
             ref: 'users'
 
         },
+        uname: {
+            type: String,
+            required: true
+        },
+        pic: {
+            type: String,
+            required: true
+        },
         text: {
             type: String,
             required: true

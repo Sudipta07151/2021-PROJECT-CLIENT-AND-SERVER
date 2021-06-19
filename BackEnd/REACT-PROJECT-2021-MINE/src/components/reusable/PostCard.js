@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
-    console.log(data)
+    console.log(data.likes.length)
     const classes = useStyles(data);
     const history = useHistory();
     const { path, url } = useRouteMatch();
@@ -99,9 +99,9 @@ const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
                 >
                     <ThumbUpAltIcon />
                 </IconButton>
-                {/* <Badge color="secondary" badgeContent={data.likes} max={2000}>
+                <Badge color="secondary" badgeContent={data.likes.length} max={2000}>
                     <Typography>Likes</Typography>
-                </Badge> */}
+                </Badge>
             </CardActions>
         </Card>
 

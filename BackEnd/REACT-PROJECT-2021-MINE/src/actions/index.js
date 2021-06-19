@@ -198,8 +198,9 @@ const likeBlog = postID => {
     console.log('LIKES BLOG CALLED', postID);
     return async (dispatch) => {
         try {
-            const res = await axios.get(`/api/like/${postID}`);
+            const res = await axios.put(`/api/like/${postID}`);
             console.log('finished');
+            console.log(res);
             dispatch({
                 type: 'LIKE_POST',
                 payload: res.data
@@ -211,11 +212,31 @@ const likeBlog = postID => {
     }
 }
 
+const addComment = (postID, value) => {
+    console.log('FROM addComment action creator', postID, value);
+    const config = {
+        'Content-Type': 'application/json'
+    }
+    const body = { value };
+    console.log('body:', body);
+    return async (dispatch) => {
+        try {
+            const res = await axios.post(`/api/post/comment/${postID}`, body, config);
+            dispatch({
+                type: 'ADD_POST',
+                payload: res.data
+            });
+        }
+        catch (err) {
+            console.log(err.message);
+        }
+    }
+}
 
 
 export {
     fetchBooksList, selectBook, searchTerm,
     clearSearchTerm, myBookList,
     getAllBooks, AddBlogPost, FetchBlogPost, fetchMyBlogs,
-    deletePost, fetchSingleBlogs, likeBlog
+    deletePost, fetchSingleBlogs, likeBlog, addComment
 }

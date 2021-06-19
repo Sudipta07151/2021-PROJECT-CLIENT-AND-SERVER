@@ -60,6 +60,12 @@ const IndividualBlog = (props) => {
     const classes = useStyles();
     const { id } = useParams();
     console.log(id);
+    console.log(props)
+    if (props.blogData) {
+        var created_date = new Date(props.blogData.date);
+        var date = created_date.toDateString();
+        var time = created_date.toTimeString();
+    }
     React.useEffect(() => {
         props.fetchSingleBlogs(id);
     }, [props.fetchSingleBlogs])
@@ -95,7 +101,7 @@ const IndividualBlog = (props) => {
                             {props.blogData.body}
                         </Typography>
                         <Typography variant="subtitle2" color="textSecondary" component="p" style={{ marginTop: '20px' }}>
-                            {`DATE: ${props.blogData.date}`}
+                            {props.blogData ? `Date: ${date} Time :${time}` : null}
                         </Typography>
                         <Typography variant="overline" color="textSecondary" component="p" style={{ marginTop: '20px' }}>
                             {props.blogData.tags.art ? <Chip className={classes.chips} size="small" label='art' /> : ''}
@@ -119,14 +125,14 @@ const IndividualBlog = (props) => {
         }
 
     }
-
     const { image, title, author, isbn } = props;
 
     return (
         <div>
             {render()}
-            <AddComment />
-            <CommentList />
+            <AddComment postID={id} />
+            {props.blogData ? <CommentList commentList={props.blogData.comments} /> : null}
+            {/* <CommentList commentList={props.blogData.comments} /> */}
         </div>
     );
 }
