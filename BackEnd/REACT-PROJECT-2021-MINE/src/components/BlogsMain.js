@@ -175,7 +175,7 @@ const BlogsMain = (props) => {
                         </IconButton>
                         <Typography variant="h6" noWrap>
                             BLOGS SECTION
-          </Typography>
+                        </Typography>
                     </Toolbar>
                 </AppBar>
                 <nav className={classes.drawer} aria-label="mailbox folders">

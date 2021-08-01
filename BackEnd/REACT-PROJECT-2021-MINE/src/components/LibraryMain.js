@@ -149,7 +149,7 @@ const LibraryMain = (props) => {
                         </IconButton>
                         <Typography variant="h6" noWrap>
                             LIBRARY SECTION
-          </Typography>
+                        </Typography>
                     </Toolbar>
                 </AppBar>
                 <nav className={classes.drawer} aria-label="mailbox folders">

@@ -14,16 +14,6 @@ const useStyles = makeStyles((theme) => ({
 const BookList = ({ books }) => {
     console.log(books[0])
     const classes = useStyles();
-    // React.useEffect(() => {
-    //     books[0].map((bookData) => {
-    //         if (bookData.volumeInfo["imageLinks"]) console.log("image : ", bookData.volumeInfo.imageLinks.thumbnail)
-    //         else console.log("image unavailable")
-    //         // console.log(bookData);
-    //         // console.log(bookData.volumeInfo.title);
-    //         // console.log(bookData.volumeInfo.authors[0]);
-    //         // console.log(bookData.volumeInfo.industryIdentifiers[0].identifier);
-    //     })
-    // }, books[0])
     return (
         <Grid container spacing={3} className={classes.list}>
             {
